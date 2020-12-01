@@ -7,15 +7,15 @@ import (
 )
 
 func Intent() (libdcm.Intent, error) {
-	intent := libdcm.Intent{}
+	intent := emptyIntent()
 
 	err := survey.Ask(questions.FirstIntent, &intent)
 	if err != nil {
-		return libdcm.Intent{}, err
+		return emptyIntent(), err
 	}
 	entities, err := Entities()
 	if err != nil {
-		return libdcm.Intent{}, err
+		return emptyIntent(), err
 	}
 	intent.Entities = entities
 	intent.RequiredEntities = [][]string{}
@@ -30,12 +30,12 @@ func Intent() (libdcm.Intent, error) {
 	}
 
 	if err != nil {
-		return libdcm.Intent{}, err
+		return emptyIntent(), err
 	}
 
 	err = survey.Ask(questions.Ttl, &intent.TTL)
 	if err != nil {
-		return libdcm.Intent{}, err
+		return emptyIntent(), err
 	}
 
 	requiredTokens, err := libdcm.SelectMultipleStrings("Do you want to select required tokens?",
@@ -60,7 +60,7 @@ func Intent() (libdcm.Intent, error) {
 			"Available prompts if required entity is missing",
 		)
 		if err != nil {
-			return libdcm.Intent{}, nil
+			return emptyIntent(), nil
 
 		}
 		if !confirm {
@@ -73,7 +73,7 @@ func Intent() (libdcm.Intent, error) {
 			promptableEntities...,
 		)
 		if err != nil {
-			return libdcm.Intent{}, nil
+			return emptyIntent(), nil
 		}
 
 		currentPrompt.Entities = pick
@@ -84,4 +84,14 @@ func Intent() (libdcm.Intent, error) {
 
 	return intent, err
 
+}
+
+func emptyIntent() libdcm.Intent {
+	return libdcm.Intent{
+		RequiredEntities: [][]string{},
+		Entities:         []libdcm.Entity{},
+		Prompts:          []libdcm.Prompt{},
+		Errors:           []libdcm.Error{},
+		RequiredTokens:   []string{},
+	}
 }

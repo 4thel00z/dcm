@@ -4,7 +4,6 @@ import (
 	"github.com/4thel00z/dcm/pkg/libdcm"
 	"github.com/4thel00z/dcm/pkg/libdcm/questions"
 	"github.com/AlecAivazis/survey/v2"
-	"time"
 )
 
 func Domain() (libdcm.DomainContextMetadata, error) {
@@ -17,8 +16,8 @@ func Domain() (libdcm.DomainContextMetadata, error) {
 			AnswerModel:              nil,
 			AnswerModelMinConfidence: 0.5,
 			Type:                     "nuance",
-			Created:                  time.Now(),
-			Intents:                  nil,
+			Created:                  nil,
+			Intents:                  []libdcm.Intent{},
 		}
 	)
 

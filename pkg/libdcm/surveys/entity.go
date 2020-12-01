@@ -7,16 +7,16 @@ import (
 )
 
 func Entity() (libdcm.Entity, error) {
-	entity := libdcm.Entity{}
+	entity := emptyEntity()
 
 	err := survey.Ask(questions.Entity, &entity)
 	if err != nil {
-		return libdcm.Entity{}, err
+		return emptyEntity(), err
 	}
 
 	err = survey.Ask(questions.Ttl, &entity.TTL)
 	if err != nil {
-		return libdcm.Entity{}, err
+		return emptyEntity(), err
 	}
 
 	return entity, err
@@ -42,4 +42,10 @@ func Entities() (entities libdcm.Entities, err error) {
 	}
 
 	return
+}
+
+func emptyEntity() libdcm.Entity {
+	return libdcm.Entity{
+		FillPolicy: []string{},
+	}
 }

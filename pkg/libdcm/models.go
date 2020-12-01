@@ -1,17 +1,15 @@
 package libdcm
 
-import "time"
-
 type DomainContextMetadata struct {
-	Version                  int       `json:"version"`
-	ExportVersion            string    `json:"exportVersion" survey:"exportVersion"`
-	Model                    *string   `json:"model" survey:"model"`
-	ModelMinConfidence       float64   `json:"modelMinConfidence" survey:"modelMinConfidence"`
-	AnswerModel              *string   `json:"answerModel" survey:"answerModel"`
-	AnswerModelMinConfidence float64   `json:"answerModelMinConfidence" survey:"answerModelMinConfidence"`
-	Type                     string    `json:"type" survey:"type"`
-	Created                  time.Time `json:"created"`
-	Intents                  []Intent  `json:"intents" survey:"intents"`
+	Version                  int      `json:"version"`
+	ExportVersion            string   `json:"exportVersion" survey:"exportVersion"`
+	Model                    *string  `json:"model" survey:"model"`
+	ModelMinConfidence       float64  `json:"modelMinConfidence" survey:"modelMinConfidence"`
+	AnswerModel              *string  `json:"answerModel" survey:"answerModel"`
+	AnswerModelMinConfidence float64  `json:"answerModelMinConfidence" survey:"answerModelMinConfidence"`
+	Type                     string   `json:"type" survey:"type"`
+	Created                  *string   `json:"created"`
+	Intents                  []Intent `json:"intents" survey:"intents"`
 }
 
 type TTL struct {
