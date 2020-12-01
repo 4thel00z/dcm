@@ -15,6 +15,7 @@ var (
 			Name: "entityFiller",
 			Prompt: &survey.Input{
 				Message: "What is the name of the entityFiller reprompt? (skip this if no reprompt is needed)",
+				Default: "",
 			},
 		},
 		{
