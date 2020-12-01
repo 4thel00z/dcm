@@ -4,7 +4,7 @@ Tool to generate domain context metadata for [hackathon-conf](https://github.com
 
 ## Usage
 
-[![asciicast](https://asciinema.org/a/gdiajMzo4XTnZuNllbB86lWza.svg)](https://asciinema.org/a/gdiajMzo4XTnZuNllbB86lWza)
+[![asciicast](https://asciinema.org/a/dMSSqApnb5XKtb3YpP40WTZH5.svg)](https://asciinema.org/a/dMSSqApnb5XKtb3YpP40WTZH5)
 
 ## License
 
