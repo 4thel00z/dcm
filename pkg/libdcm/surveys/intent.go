@@ -60,7 +60,7 @@ func Intent() (libdcm.Intent, error) {
 			"Available prompts if required entity is missing",
 		)
 		if err != nil {
-			return emptyIntent(), nil
+			return emptyIntent(), err
 
 		}
 		if !confirm {
@@ -73,7 +73,7 @@ func Intent() (libdcm.Intent, error) {
 			promptableEntities...,
 		)
 		if err != nil {
-			return emptyIntent(), nil
+			return emptyIntent(), err
 		}
 
 		currentPrompt.Entities = pick

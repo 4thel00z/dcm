@@ -1,6 +1,7 @@
 package surveys
 
 import (
+	"fmt"
 	"github.com/4thel00z/dcm/pkg/libdcm"
 	"github.com/4thel00z/dcm/pkg/libdcm/questions"
 	"github.com/AlecAivazis/survey/v2"
@@ -22,7 +23,9 @@ func Domain() (libdcm.DomainContextMetadata, error) {
 	)
 
 	err := survey.Ask(questions.Domain, &domain)
-
+	if err != nil {
+		return domain, fmt.Errorf("survey.Ask(questions.Domain, &domain): %e", err)
+	}
 	for {
 		confirm, err := libdcm.ConfirmWithHelp(
 			"Do you want to add another intent?",
@@ -30,7 +33,7 @@ func Domain() (libdcm.DomainContextMetadata, error) {
 		)
 
 		if err != nil {
-			return libdcm.DomainContextMetadata{}, nil
+			return domain, fmt.Errorf("libdcm.ConfirmWithHelp: %e", err)
 		}
 		if !confirm {
 			break
@@ -38,11 +41,11 @@ func Domain() (libdcm.DomainContextMetadata, error) {
 		intent, err := Intent()
 
 		if err != nil {
-			return libdcm.DomainContextMetadata{}, nil
+			return domain, err
 		}
 
 		domain.Intents = append(domain.Intents, intent)
 	}
 
-	return domain, err
+	return domain, nil
 }
