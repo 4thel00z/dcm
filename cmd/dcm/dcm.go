@@ -29,7 +29,7 @@ func main() {
 		}()
 		*output = out.Name() + ".json"
 	} else {
-		out, err := os.OpenFile(*output, os.O_CREATE|os.O_WRONLY, 0644)
+		out, err = os.Create(*output)
 		cry(err)
 		defer func() {
 			_ = out.Close()
@@ -42,10 +42,10 @@ func main() {
 	marshalled, err := json.Marshal(domain)
 	cry(err)
 
-	_, err = fmt.Fprint(out, string(marshalled))
+	_, err = out.WriteString(string(marshalled))
 	cry(err)
 
-	fmt.Print("Written file to: ", out.Name())
+	fmt.Print("Written file to: ", *output)
 }
 
 func cry(err error) {
