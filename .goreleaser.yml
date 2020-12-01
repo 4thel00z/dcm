@@ -10,3 +10,9 @@ builds:
     # empty string to skip modifying the output.
     # Default is empty string.
     mod_timestamp: '{{ .CommitTimestamp }}'
+    goos:
+      - darwin
+      - windows
+      - linux
+    goarch:
+      - amd64
