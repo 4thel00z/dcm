@@ -47,8 +47,8 @@ func SelectMultipleStringArrays(continuePrompt, multiSelectPrompt, help string, 
 	return
 }
 
-func SelectMultipleStrings(continuePrompt, multiSelectPrompt, help string, choices ...string) (target []string, err error) {
-	target = []string{}
+func SelectMultipleStrings(continuePrompt, multiSelectPrompt, help string, choices ...string) ([]string, error) {
+	target := []string{}
 	p := &survey.MultiSelect{
 		Message: multiSelectPrompt,
 		Options: choices,
@@ -58,19 +58,19 @@ func SelectMultipleStrings(continuePrompt, multiSelectPrompt, help string, choic
 	if continuePrompt != "" {
 		confirmation, err := Confirm(continuePrompt)
 		if err != nil {
-			return nil, err
+			return target, err
 		}
 		if !confirmation {
-			return nil, err
+			return target, err
 		}
 	}
 
-	err = survey.AskOne(p, &target)
+	err := survey.AskOne(p, &target)
 	if err != nil {
-		return nil, err
+		return target, err
 	}
 
-	return
+	return target, err
 }
 
 func Multilines(prompt string) []string {
