@@ -22,7 +22,7 @@ var (
 			Name: "fallbackToNoSession",
 			Prompt: &survey.Confirm{
 				Message: "Do you want to fallback to the session for entity retrieval?",
-				Default: false,
+				Default: true,
 			},
 		},
 	}
